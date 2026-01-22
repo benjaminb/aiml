@@ -1,0 +1,4 @@
+.venv
+
+# Ignore .DS_Store files everywhere
+.DS_Store
