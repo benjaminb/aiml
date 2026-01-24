@@ -5,14 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "accelerate>=1.12.0",
+    "dotenv>=0.9.9",
     "redis>=7.1.0",
-    "sentence-transformers>=5.2.0",
+    "structured-output-llms",
 ]
 
-[dependency-groups]
-dev = [
-    "ipykernel>=7.1.0",
-    "matplotlib>=3.10.8",
-    "seaborn>=0.13.2",
-]
+[tool.uv.sources]
+structured-output-llms = { workspace = true }

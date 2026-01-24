@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+structured_llm.py
+structured_output_llms.egg-info/PKG-INFO
+structured_output_llms.egg-info/SOURCES.txt
+structured_output_llms.egg-info/dependency_links.txt
+structured_output_llms.egg-info/requires.txt
+structured_output_llms.egg-info/top_level.txt

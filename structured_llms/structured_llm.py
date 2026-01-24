@@ -1,8 +1,11 @@
 from pydantic import BaseModel, RootModel
 from langchain.chat_models import init_chat_model
 from langchain.messages import SystemMessage, HumanMessage
-import os
+from langchain.cache import SQLiteCache
+from langchain.globals import set_llm_cache
 
+# Set up a persistent cache for LLM calls
+set_llm_cache(SQLiteCache(database_path=".llm_cache.db"))
 
 class StructuredLLM():
     def __init__(self, model: str, response_model: BaseModel | RootModel):
@@ -23,7 +26,7 @@ class StructuredLLM():
         """
         messages = [SystemMessage(content=prompt)]
 
-        # Claude models require a non-empty human message to respond as of 1-23-25
+        # 1-23-25: Claude models require a non-empty human message to respond, or you get a Bad Request error
         if self.model.startswith("claude") or self.model.startswith("anthropic"):
             messages += [HumanMessage(content="do it")]
         response = self.chat_model.invoke(input=messages, **kwargs)
