@@ -3,9 +3,19 @@ from langchain.chat_models import init_chat_model
 from langchain.messages import SystemMessage, HumanMessage
 from langchain.cache import SQLiteCache
 from langchain.globals import set_llm_cache
+import os
+from pathlib import Path
+
 
 # Set up a persistent cache for LLM calls
-set_llm_cache(SQLiteCache(database_path=".llm_cache.db"))
+if 'PROJECT_ROOT' not in os.environ:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).parent / '.env')
+
+PROJECT_ROOT = os.getenv('PROJECT_ROOT')
+database_path = os.path.join(PROJECT_ROOT, 'data', '.llm_cache.db')
+set_llm_cache(SQLiteCache(database_path=database_path))
+
 
 class StructuredLLM():
     def __init__(self, model: str, response_model: BaseModel | RootModel):
