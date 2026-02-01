@@ -5,12 +5,15 @@ from langchain.cache import SQLiteCache
 from langchain.globals import set_llm_cache
 import os
 from pathlib import Path
-
+from dotenv import load_dotenv
 
 # Set up a persistent cache for LLM calls
-if 'PROJECT_ROOT' not in os.environ:
-    from dotenv import load_dotenv
-    load_dotenv(Path(__file__).parent / '.env')
+path = Path(__file__).resolve()
+for parent in path.parents:
+    env_file = parent / ".env"
+    if env_file.exists():
+        load_dotenv(env_file)
+
 
 PROJECT_ROOT = os.getenv('PROJECT_ROOT')
 database_path = os.path.join(PROJECT_ROOT, 'data', '.llm_cache.db')

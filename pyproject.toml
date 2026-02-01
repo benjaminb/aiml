@@ -2,6 +2,17 @@
 name = "aiml-monorepo"
 version = "0.1.0"
 requires-python = ">=3.13"
+dependencies = [
+    "imbalanced-learn>=0.14.1",
+    "ipykernel",
+    "pandas>=3.0.0",
+    "pip",
+]
 
 [tool.uv.workspace]
-members = ["structured_llms", "semantic_cache"]
+members = [
+    "chains",
+    "structured_llms",
+    "semantic_cache",
+    "scikit",
+]
