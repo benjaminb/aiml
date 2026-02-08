@@ -15,4 +15,5 @@ members = [
     "structured_llms",
     "semantic_cache",
     "scikit",
+    "routers",
 ]
